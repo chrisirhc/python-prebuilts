@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install dependencies
-        run: sudo apt-get install tcl8.6-dev
+        run: sudo apt-get install tcl
       - name: Build
         run: cd linux && ./build.sh
       - name: Upload artifacts
