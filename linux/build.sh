@@ -12,13 +12,13 @@ docker tag "$TARGET_IMAGE" "quay.io/pypa/manylinux2010_x86_64"
 # Get the appimage repo
 git clone https://github.com/niess/python-appimage.git
 pushd python-appimage
-git checkout 3f6ed9e6b2b2d4d5b78dda3a4fe9db7324f788a7
+git checkout 818fe273c124223ce651e3ba5d439de9a9550cd7
 git apply ../appimage.patch
 
 # Create a container with the image
 id=$(docker create quay.io/pypa/manylinux2010_x86_64)
 
-for tag in "cp27-cp27m" "cp27-cp27mu" "cp35-cp35m" "cp36-cp36m" "cp37-cp37m" "cp38-cp38"
+for tag in "cp39-cp39"
 do
     python -m python_appimage build manylinux \
         2010_x86_64 \
@@ -34,13 +34,7 @@ do
 done
 
 # Copy in libpython
-# TODO: clean this up
-docker cp $id:/opt/python/cp27-cp27m/lib/libpython2.7.so.1.0 cp27-cp27m/usr/lib/
-docker cp $id:/opt/python/cp27-cp27mu/lib/libpython2.7.so.1.0 cp27-cp27mu/usr/lib/
-docker cp $id:/opt/python/cp35-cp35m/lib/libpython3.5m.so.1.0 cp35-cp35m/usr/lib/
-docker cp $id:/opt/python/cp36-cp36m/lib/libpython3.6m.so.1.0 cp36-cp36m/usr/lib/
-docker cp $id:/opt/python/cp37-cp37m/lib/libpython3.7m.so.1.0 cp37-cp37m/usr/lib/
-docker cp $id:/opt/python/cp38-cp38/lib/libpython3.8.so.1.0 cp38-cp38/usr/lib/
+docker cp $id:/opt/python/cp39-cp39/lib/libpython3.9.so.1.0 cp39-cp39/usr/lib/
 
 # Fix rpaths
 find . -name "libpython*.so.1.0" | xargs -L 1 sudo patchelf --set-rpath '$ORIGIN'
