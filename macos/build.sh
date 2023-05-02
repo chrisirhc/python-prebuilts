@@ -11,7 +11,6 @@ curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
 git clone https://github.com/gregneagle/relocatable-python.git
 pushd relocatable-python
 git checkout 67648ffc91aef264f0f8eb2eba14f9ed126f4168
-git apply ../relocatable-python.patch
 
 for version in "3.9.13_10.9"
 do
