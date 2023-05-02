@@ -13,7 +13,7 @@ pushd relocatable-python
 git checkout 8bce58e91895978da6f238c1d2e1de3559ea4643
 git apply ../relocatable-python.patch
 
-for version in "2.7.18_10.9" "3.5.4_10.6" "3.6.8_10.9" "3.7.8_10.9" "3.8.5_10.9"
+for version in "2.7.18_10.9" "3.5.4_10.6" "3.6.8_10.9" "3.7.8_10.9" "3.8.5_10.9" "3.9.13_10.9"
 do
     # Split version
     IFS='_' read -a ver <<< "$version"
